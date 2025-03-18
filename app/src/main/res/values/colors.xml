@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="primaryColor">#2462FE</color>
-    <color name="noteBg">#4D2462FE</color>
-    <color name="red">#FF0000</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="primaryColor">#c8cf80</color>
+    <color name="secondaryColor">#c0d69c</color>
+    <color name="secondaryColorL">#e3edd4</color>
 </resources>

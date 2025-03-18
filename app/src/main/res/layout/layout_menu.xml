@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menuLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rounded_top_corners"
-    android:backgroundTint="@color/primaryColor"
     android:padding="12dp"
     android:orientation="vertical"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:id="@+id/menuLayout">
+    android:background="@drawable/rounded_top_corners"
+    android:backgroundTint="@color/primaryColor"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
+        android:id="@+id/menuText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Menu"
-        android:textSize="16sp"
-        android:id="@+id/menuText"
         android:layout_marginBottom="12dp"
         android:textAlignment="center"
+        android:text="Menu"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/fontSizeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adjust font size"
-        android:textSize="16sp"
-        android:id="@+id/fontSizeText"
         android:layout_marginBottom="3dp"
         android:textAlignment="center"
-        android:textColor="@color/white"/>
+        android:text="Adjust font size"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText" />
 
     <SeekBar
         android:id="@+id/fontSizeSeekBar"
@@ -39,69 +42,89 @@
         android:max="24"/>
 
     <LinearLayout
+        android:id="@+id/buttonsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
-        android:id="@+id/buttonsLayout">
+        android:orientation="horizontal">
 
         <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
             android:id="@+id/boldBtn"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:src="@drawable/baseline_format_bold_24"
-            android:background="@drawable/rounded_corner"
-            app:tint="@color/white"
-            android:backgroundTint="@color/black"/>
-
-        <ImageButton
+            android:src="@drawable/format_bold_24px"
+            android:contentDescription="Make text bold"
             android:layout_width="48dp"
             android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/black"
+            app:tint="@color/white"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
             android:id="@+id/italicBtn"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:src="@drawable/baseline_format_italic_24"
-            android:background="@drawable/rounded_corner"
-            app:tint="@color/white"
-            android:backgroundTint="@color/black"/>
-
-        <ImageButton
+            android:src="@drawable/format_italic_24px"
+            android:contentDescription="Make text italic"
             android:layout_width="48dp"
             android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/black"
+            app:tint="@color/white"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
             android:id="@+id/underlineBtn"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:src="@drawable/baseline_format_underlined_24"
-            android:background="@drawable/rounded_corner"
-            app:tint="@color/white"
-            android:backgroundTint="@color/black"/>
-
-        <ImageButton
+            android:src="@drawable/format_underlined_24px"
+            android:contentDescription="Make text underlined"
             android:layout_width="48dp"
             android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/black"
+            app:tint="@color/white"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
             android:id="@+id/colorBtn"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/rounded_corner"
-            android:backgroundTint="@color/red"/>
-
-        <ImageButton
+            android:src="@drawable/format_color_text_24px"
+            android:contentDescription="Change text color"
             android:layout_width="48dp"
             android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
-            android:id="@+id/addImageBtn"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:src="@drawable/baseline_add_photo_alternate_24"
             android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/black"
+            app:tint="@color/red"
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/addImageBtn"
+            android:src="@drawable/add_photo_alternate_24px"
+            android:contentDescription="Attach image"
+            android:layout_width="48dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/black"
             app:tint="@color/white"
-            android:backgroundTint="@color/black"/>
+            tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/drawBtn"
+            android:src="@drawable/draw_24px"
+            android:contentDescription="Draw something"
+            android:layout_width="48dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/black"
+            app:tint="@color/white"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

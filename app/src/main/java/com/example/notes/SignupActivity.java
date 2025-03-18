@@ -17,13 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
-
 public class SignupActivity extends AppCompatActivity {
 
-    EditText email, pw, confirmPw;
+    EditText emailEditText, pwEditText, confirmPwEditText;
     Button createAccountBtn;
-    ProgressBar progressBar;
+    ProgressBar signupProgressBar;
     TextView alreadyLogIn;
 
     @Override
@@ -31,84 +29,72 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        email=findViewById(R.id.emailEditText);
-        pw=findViewById(R.id.pwEditText);
-        confirmPw=findViewById(R.id.confirmPwEditText);
-        createAccountBtn=findViewById(R.id.createAccountBtn);
-        progressBar=findViewById(R.id.signupProgressBar);
-        alreadyLogIn=findViewById(R.id.alreadyLogIn);
+        emailEditText = findViewById(R.id.emailEditText);
+        pwEditText = findViewById(R.id.pwEditText);
+        confirmPwEditText = findViewById(R.id.confirmPwEditText);
+        createAccountBtn = findViewById(R.id.createAccountBtn);
+        signupProgressBar = findViewById(R.id.signupProgressBar);
+        alreadyLogIn = findViewById(R.id.alreadyLogIn);
 
         createAccountBtn.setOnClickListener(v->createAccount());
         alreadyLogIn.setOnClickListener(v->finish());
     }
 
-    void createAccount()
-    {
-        String emailText=email.getText().toString();
-        String pwText=pw.getText().toString();
-        String confirmPwText=confirmPw.getText().toString();
+    void createAccount() {
+        String emailString = emailEditText.getText().toString();
+        String passwdString = pwEditText.getText().toString();
+        String confirmString = confirmPwEditText.getText().toString();
 
-        boolean isValid=validateData(emailText, pwText, confirmPwText);
-        if(!isValid)
-        {
+        boolean isValid=validateData(emailString, passwdString, confirmString);
+        if(!isValid) {
             return;
         }
 
-        createFirebaseAccount(emailText, pwText);
+        createFirebaseAccount(emailString, passwdString);
     }
 
-    void createFirebaseAccount(String emailText, String pwText)
-    {
+    void createFirebaseAccount(String emailString, String passwdString) {
         changeInProgress(true);
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(emailText, pwText).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(emailString, passwdString).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 changeInProgress(false);
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(SignupActivity.this, "Account created, check e-mail to verify", Toast.LENGTH_LONG).show();
+                if(task.isSuccessful()) {
+                    Toast.makeText(SignupActivity.this, "Account created, check emails to verify", Toast.LENGTH_LONG).show();
                     firebaseAuth.getCurrentUser().sendEmailVerification();
                     firebaseAuth.signOut();
                     finish();
                 }
-                else
-                {
+                else {
                     Toast.makeText(SignupActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    void changeInProgress(boolean inProgress)
-    {
-        if(inProgress)
-        {
-            progressBar.setVisibility(View.VISIBLE);
+    void changeInProgress(boolean inProgress) {
+        if(inProgress) {
+            signupProgressBar.setVisibility(View.VISIBLE);
             createAccountBtn.setVisibility(View.GONE);
         }
-        else
-        {
-            progressBar.setVisibility(View.GONE);
+        else {
+            signupProgressBar.setVisibility(View.GONE);
             createAccountBtn.setVisibility(View.VISIBLE);
         }
     }
 
-    boolean validateData(String emailText, String pwText, String confirmPwText)
-    {
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailText).matches())
-        {
-            email.setError("E-mail is invalid");
+    boolean validateData(String emailString, String passwdString, String confirmString) {
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailString).matches()) {
+            emailEditText.setError("Email invalid");
             return false;
         }
-        if(pwText.length()<6)
-        {
-            pw.setError("Password too short");
+        if(passwdString.length()<6) {
+            pwEditText.setError("Password too short");
             return false;
         }
-        if(!pwText.equals(confirmPwText))
-        {
-            confirmPw.setError("Passwords don't match");
+        if(!passwdString.equals(confirmString)) {
+            confirmPwEditText.setError("Passwords don't match");
             return false;
         }
         return true;

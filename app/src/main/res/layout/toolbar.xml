@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColor">
 
     <RelativeLayout
@@ -13,22 +14,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notes"
             android:layout_marginStart="12dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:text="Notes"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText" />
 
         <ImageButton
+            android:id="@+id/menuBtn"
+            android:src="@drawable/menu_24px"
+            android:contentDescription="Hamburger menu button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_dehaze_24"
-            app:tint="@color/white"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:id="@+id/menuBtn"
-            android:background="@color/primaryColor"/>
+            android:background="@color/primaryColor"
+            app:tint="@color/white"
+            tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 

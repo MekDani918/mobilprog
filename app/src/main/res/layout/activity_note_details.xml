@@ -9,57 +9,58 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="0dp"
-            android:layout_weight="0.925">
+            android:layout_weight="0.925"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <include layout="@layout/toolbar"/>
-
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="30dp"
+                android:paddingHorizontal="30dp"
                 tools:context=".NoteDetailsActivity">
 
                 <RelativeLayout
+                    android:id="@+id/titleBarLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/titleBarLayout">
+                    android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/pageTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/pageTitle"
+                        android:layout_centerVertical="true"
                         android:text="Add Note"
                         android:textSize="32sp"
-                        android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:layout_centerVertical="true"/>
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText" />
 
                     <ImageButton
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
                         android:id="@+id/saveNoteBtn"
-                        android:src="@drawable/baseline_check_24"
+                        android:src="@drawable/check_24px"
+                        android:contentDescription="Save note button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:background="@drawable/rounded_corner"
+                        android:backgroundTint="@color/primaryColor"
                         app:tint="@color/white"
-                        android:backgroundTint="@color/primaryColor"/>
+                        tools:ignore="HardcodedText" />
 
                 </RelativeLayout>
 
@@ -77,56 +78,64 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:padding="16dp"
-                            android:backgroundTint="@color/noteBg"
-                            android:background="@drawable/rounded_corner">
+                            android:orientation="vertical"
+                            android:background="@drawable/rounded_corner"
+                            android:backgroundTint="@color/secondaryColor">
 
                             <EditText
+                                android:id="@+id/notesTitleText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/notesTitleText"
+                                android:layout_marginVertical="8dp"
+                                android:padding="12dp"
+                                android:inputType="textShortMessage"
+                                android:maxLines="3"
                                 android:hint="Title"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:layout_marginVertical="8dp"
                                 android:textColor="@color/black"
-                                android:maxLines="3"
                                 android:textColorHint="@color/black"
-                                android:padding="12dp"/>
+                                android:importantForAutofill="no"
+                                tools:ignore="HardcodedText" />
 
                             <EditText
+                                android:id="@+id/notesContentText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/notesContentText"
-                                android:hint="Content (optional)"
-                                android:minLines="3"
-                                android:textSize="16sp"
-                                android:gravity="top"
                                 android:layout_marginVertical="8dp"
+                                android:padding="12dp"
+                                android:gravity="top"
+                                android:inputType="textLongMessage"
+                                android:minLines="3"
+                                android:hint="Content (optional)"
+                                android:textSize="16sp"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/black"
-                                android:padding="12dp"/>
+                                android:importantForAutofill="no"
+                                tools:ignore="HardcodedText" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="6dp"
+                            android:id="@+id/imageNoteLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_marginTop="6dp"
                             android:padding="12dp"
-                            android:backgroundTint="@color/noteBg"
+                            android:orientation="vertical"
                             android:background="@drawable/rounded_corner"
-                            android:id="@+id/imageNoteLayout"
+                            android:backgroundTint="@color/secondaryColor"
                             android:visibility="gone">
 
                             <ImageView
+                                android:id="@+id/imageNote"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/imageNote"
                                 android:layout_gravity="center"
-                                android:adjustViewBounds="true"/>
+                                android:adjustViewBounds="true"
+                                android:contentDescription="Attached image"
+                                tools:ignore="HardcodedText" />
 
                         </LinearLayout>
 

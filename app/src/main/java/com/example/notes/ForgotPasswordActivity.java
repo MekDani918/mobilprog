@@ -18,46 +18,42 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-    Button sendLink;
-    ProgressBar progressBar;
-    EditText email;
+    Button sendLinkBtn;
+    ProgressBar loginProgressBar;
+    EditText emailEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        sendLink=findViewById(R.id.sendLinkBtn);
-        progressBar=findViewById(R.id.loginProgressBar);
-        email=findViewById(R.id.emailEditText);
+        sendLinkBtn = findViewById(R.id.sendLinkBtn);
+        loginProgressBar = findViewById(R.id.loginProgressBar);
+        emailEditText = findViewById(R.id.emailEditText);
 
-        sendLink.setOnClickListener(v->sendPwResetLink());
+        sendLinkBtn.setOnClickListener(v->sendPwResetLink());
     }
 
-    void sendPwResetLink()
-    {
-        String emailText=email.getText().toString();
+    void sendPwResetLink() {
+        String emailString = emailEditText.getText().toString();
 
-        boolean isValid=validateData(emailText);
-        if(!isValid)
-        {
+        boolean isValid = validateData(emailString);
+        if(!isValid) {
             return;
         }
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         changeInProgress(true);
-        firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseAuth.sendPasswordResetEmail(emailString).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 changeInProgress(false);
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(ForgotPasswordActivity.this, "E-mail sent", Toast.LENGTH_LONG).show();
+                if(task.isSuccessful()) {
+                    Toast.makeText(ForgotPasswordActivity.this, "Check your emails", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
                     finish();
                 }
-                else
-                {
+                else {
                     Toast.makeText(ForgotPasswordActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             }
@@ -66,23 +62,20 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     void changeInProgress(boolean inProgress)
     {
-        if(inProgress)
-        {
-            progressBar.setVisibility(View.VISIBLE);
-            sendLink.setVisibility(View.GONE);
+        if(inProgress) {
+            loginProgressBar.setVisibility(View.VISIBLE);
+            sendLinkBtn.setVisibility(View.GONE);
         }
-        else
-        {
-            progressBar.setVisibility(View.GONE);
-            sendLink.setVisibility(View.VISIBLE);
+        else {
+            loginProgressBar.setVisibility(View.GONE);
+            sendLinkBtn.setVisibility(View.VISIBLE);
         }
     }
 
     boolean validateData(String emailText)
     {
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailText).matches())
-        {
-            email.setError("E-mail is invalid");
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            emailEditText.setError("E-mail is invalid");
             return false;
         }
         return true;

@@ -1,3 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Notes</string>
+    <string name="client_id" tools:ignore="TypographyDashes">839699482270-5832g4fjfheu2v988qtavk6jrhiq2mcu.apps.googleusercontent.com</string>
 </resources>
