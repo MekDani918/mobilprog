@@ -38,3 +38,4 @@ replay_pid*
 .externalNativeBuild
 .cxx
 local.properties
+app/google-services.json
